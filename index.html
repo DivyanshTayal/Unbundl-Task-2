@@ -7,21 +7,23 @@
     /* CSS Styles */
     body {
       font-family: Arial, sans-serif;
-      background-color:orange; /* Light Brown */
+      background-color: #e7a128; /* Light Brown */
       margin: 0;
       padding: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .container {
       text-align: center;
+      width: 80%;
       max-width: 600px;
+      margin: 0 auto;
       padding: 40px;
       border-radius: 20px;
-      background-color: greenyellow;
+      background-color: #f1eeee;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
@@ -32,31 +34,33 @@
     }
 
     .chocolate-options {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 15px;
       margin-top: 20px;
+      justify-items: center;
     }
 
     button {
       padding: 15px 25px;
       border: none;
       border-radius: 8px;
-      background-color: #b17aff; /* Light Salmon */
+      background-color: #FFA07A; /* Light Salmon */
       color: #fff;
       font-size: 18px;
       cursor: pointer;
       transition: background-color 0.3s;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     button:hover {
-      background-color: #FF7F50; /* Coral */
+      background-color: #d04b1a; /* Coral */
     }
 
     .price {
       margin-top: 30px;
-      font-size: 24px;
+      font-size: 20px;
       color: #555;
     }
   </style>
@@ -64,12 +68,17 @@
 <body>
 
 <div class="container">
-  <h1>Customize Your Chocolates</h1>
+  <h1>Customize Your Chocolate Bundle</h1>
 
   <div class="chocolate-options">
-    <button id="Almond" onclick="toggleChocolate('Almond')">Add Almond Chocolate</button>
-    <button id="Fruit" onclick="toggleChocolate('Fruit')">Add Fruit Chocolate</button>
-    <button id="Berry" onclick="toggleChocolate('Berry')">Add Berry Chocolate</button>
+    <button onclick="toggleChocolate(this, 10)">Add Dark Chocolate (₹10)</button>
+    <button onclick="toggleChocolate(this, 12)">Add Milk Chocolate (₹12)</button>
+    <button onclick="toggleChocolate(this, 11)">Add White Chocolate (₹11)</button>
+    <button onclick="toggleChocolate(this, 13)">Add Hazelnut Chocolate (₹13)</button>
+    <button onclick="toggleChocolate(this, 12)">Add Caramel Chocolate (₹12)</button>
+    <button onclick="toggleChocolate(this, 11)">Add Mint Chocolate (₹11)</button>
+    <button onclick="toggleChocolate(this, 13)">Add Almond Chocolate (₹13)</button>
+    <button onclick="toggleChocolate(this, 12)">Add Orange Chocolate (₹12)</button>
     <!-- Add more chocolate options as needed -->
 
     <p class="price">Total Price: ₹<span id="totalPrice">0.00</span></p>
@@ -79,14 +88,13 @@
 <script>
   let totalPrice = 0;
 
-  function toggleChocolate(chocolate) {
-    const chocolateButton = document.getElementById(chocolate);
-    if (chocolateButton.textContent.includes('Add')) {
-      chocolateButton.textContent = `${chocolate} Chocolate`;
-      totalPrice += 200; // Price in rupees for each chocolate item
+  function toggleChocolate(button, price) {
+    if (button.textContent.includes('Add')) {
+      button.textContent = button.textContent.replace('Add', 'Remove');
+      totalPrice += price; // Price in rupees for each chocolate item
     } else {
-      chocolateButton.textContent = `Add ${chocolate} Chocolate`;
-      totalPrice -= 200;
+      button.textContent = button.textContent.replace('Remove', 'Add');
+      totalPrice -= price;
     }
 
     document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
