@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customizable Chocolate Bundle</title>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color:orange; /* Light Brown */
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 40px;
+      border-radius: 20px;
+      background-color: greenyellow;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .chocolate-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 8px;
+      background-color: #b17aff; /* Light Salmon */
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #FF7F50; /* Coral */
+    }
+
+    .price {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Customize Your Chocolates</h1>
+
+  <div class="chocolate-options">
+    <button id="Almond" onclick="toggleChocolate('Almond')">Add Almond Chocolate</button>
+    <button id="Fruit" onclick="toggleChocolate('Fruit')">Add Fruit Chocolate</button>
+    <button id="Berry" onclick="toggleChocolate('Berry')">Add Berry Chocolate</button>
+    <!-- Add more chocolate options as needed -->
+
+    <p class="price">Total Price: ₹<span id="totalPrice">0.00</span></p>
+  </div>
+</div>
+
+<script>
+  let totalPrice = 0;
+
+  function toggleChocolate(chocolate) {
+    const chocolateButton = document.getElementById(chocolate);
+    if (chocolateButton.textContent.includes('Add')) {
+      chocolateButton.textContent = `${chocolate} Chocolate`;
+      totalPrice += 200; // Price in rupees for each chocolate item
+    } else {
+      chocolateButton.textContent = `Add ${chocolate} Chocolate`;
+      totalPrice -= 200;
+    }
+
+    document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+  }
+</script>
+
+</body>
+</html>
+
+
